@@ -191,7 +191,7 @@ def single_vid_speed(i):
     else:
         ref_video = os.path.join('/home/ubuntu/GREED/lbvfr/pseudo_reference_lbvfr/',content+'_SRC_SRC_SRC_SRC_'+begin_time[:-4]+'_pseudo_reference.y4m')
 
-    width,height=int(3840),int(2160)
+    width,height=int(1920),int(1080)
     speed_outname = os.path.join('./speed_features_PR/',os.path.splitext(os.path.basename(dis_vid))[0]+'.z')
     if(os.path.exists(speed_outname)):
         return

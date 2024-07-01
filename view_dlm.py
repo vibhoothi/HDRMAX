@@ -74,7 +74,7 @@ def dlm_image_wrapper(ref_f,dis_f,framenum,h,w):
 ref_f = '../../data/reference_Blanc1.yuv'
 dis_f = '../../data/4k_cbr3Mbps_Blanc1.yuv'
 framenos = 1
-h,w = 2160,3840
+h,w = 1080,1920
 rest,add,dis_y_pq = dlm_image_wrapper(ref_f,dis_f,framenos,h,w)
 
 plt.figure()

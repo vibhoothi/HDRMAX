@@ -94,8 +94,6 @@ def ssim_refall_wrapper(ind):
     dis_f = files[ind]
     ref_f = ref_names[ind]
     print(dis_f,ref_f)
-    dis_f = os.path.join(vid_pth,dis_f)
-    ref_f = os.path.join(vid_pth,ref_f)
     ssim_video_wrapper(ref_f,dis_f,ind)
     
 
@@ -113,8 +111,8 @@ def ssim_video_wrapper(ref_f,dis_f,dis_index):
     if(ref_f==dis_f):
         print('Videos are the same')
         return
-    h = 2160 #hs[dis_index]
-    w = 3840 #ws[dis_index]
+    h = 1080 #hs[dis_index]
+    w = 1920 #ws[dis_index]
     if args.frame_range == 'all':
         start = 0
         # get the number of frames using file size
@@ -198,9 +196,13 @@ def ssim_image_wrapper(ref_f,dis_f,start,end,h,w,space, channel ,ind):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('vid_pth', type=str, help='directory containing reference data')
+#parser.add_argument('vid_pth', type=str, help='directory containing reference data')
 parser.add_argument('feature_path', type=str, help='directory containing distorted data')
-parser.add_argument('csv_file_vidinfo', type=str, help='csv_file_vidinfo')
+parser.add_argument('--ref', type=str, help='Ref Video')
+parser.add_argument('--dist', type=str, help='Dist Video')
+parser.add_argument('--fps', type=str, help='FPS of Video')
+parser.add_argument('--frames', type=str, help='Total Frames')
+#parser.add_argument('csv_file_vidinfo', type=str, help='csv_file_vidinfo')
 parser.add_argument("--space",help="choose which color space. Support 'ycbcr' and 'lab'.")
 parser.add_argument("--channel",help="indicate which channel to process. Please provide 0, 1, or 2",type=int)
 parser.add_argument("--njobs", help="Number of videos processed at the same time.",type=int,default=1)
@@ -210,11 +212,18 @@ args = parser.parse_args()
 
 print(args.space)
 
-csv_file_vidinfo = args.csv_file_vidinfo
-vid_pth = args.vid_pth
+#csv_file_vidinfo = args.csv_file_vidinfo
+#vid_pth = args.vid_pth
 feature_path = args.feature_path
 njobs = args.njobs
-df_vidinfo = pd.read_csv(csv_file_vidinfo)
+#df_vidinfo = pd.read_csv(csv_file_vidinfo)
+df_vidinfo = {
+    'encoded_yuv': [args.dist],
+    'fps': args.fps,
+    'ref_yuv': [args.ref],
+    'start': 0,
+    'end': args.frames
+}
 files = df_vidinfo["encoded_yuv"]
 fps = df_vidinfo["fps"]
 if args.frame_range == 'file':

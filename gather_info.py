@@ -11,7 +11,7 @@ for vid in video_list:
         continue
     else:
         fps = base_name.split('_')[6]
-        number_frames = int(os.path.getsize(vid) / (2160*3840*2*1.5))
+        number_frames = int(os.path.getsize(vid) / (2160*1920*2*1.5))
         print(base_name, fps, number_frames)
         mode = base_name.split('_')[2]
         if base_name.find('football') != -1 and mode == 'CBR':

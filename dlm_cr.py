@@ -103,8 +103,8 @@ def dlm_video_wrapper(ref_f,dis_f):
         return
     basename = os.path.basename(dis_f)
     dis_index = upscaled_yuv_names.index(basename)
-    h = 2160 #hs[dis_index]
-    w = 3840 #ws[dis_index]
+    h = 1080 #hs[dis_index]
+    w = 1920 #ws[dis_index]
     framenos = framenos_list[dis_index]
     dlm_image_wrapper(ref_f,dis_f,framenos,h,w,use_adaptive_csf=False,nonlinear = nonlinear, par = par)
     return

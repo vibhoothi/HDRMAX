@@ -104,8 +104,8 @@ def vif_video_wrapper(ref_f,dis_f):
         print('Videos are the same')
         return
     dis_index = upscaled_yuv_names.index(basename)
-    h = 2160 #hs[dis_index]
-    w = 3840 #ws[dis_index]
+    h = 1080 #hs[dis_index]
+    w = 1920 #ws[dis_index]
     framenos = framenos_list[dis_index]
     vif_image_wrapper(ref_f,dis_f,framenos,h,w,nonlinear = nonlinear,par = par,use_adaptive_csf=False)
 
